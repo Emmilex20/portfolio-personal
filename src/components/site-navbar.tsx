@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Menu, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -32,8 +33,15 @@ export default function SiteNavbar() {
     <header className="sticky top-0 z-50 border-b border-white/10 bg-background/50 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         <Link href="/" className="group inline-flex items-center gap-2">
-          <span className="grid h-9 w-9 place-items-center rounded-xl border border-white/10 bg-white/5 shadow-sm">
-            <span className="h-2.5 w-2.5 rounded-full bg-blue-500 shadow-[0_0_30px_rgba(59,130,246,0.7)]" />
+          <span className="grid h-9 w-9 place-items-center overflow-hidden rounded-xl border border-white/10 bg-white/5 shadow-sm">
+            <Image
+              src="/profile.png"
+              alt="Emmanuel Agina"
+              width={36}
+              height={36}
+              className="h-9 w-9 object-cover"
+              priority
+            />
           </span>
           <span className="text-sm font-semibold tracking-tight">
             Emmanuel <span className="text-white/60">Agina</span>
