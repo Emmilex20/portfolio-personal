@@ -3,16 +3,19 @@ import Hero from "@/components/hero";
 import Section from "@/components/section";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
+import Link from "next/link";
 
 import ProjectCard from "@/components/project-card";
-import { featuredProjects } from "@/data/projects";
+import { getFeaturedProjects } from "@/data/projects";
 import ContactForm from "@/components/contact-form";
 
 import Testimonials from "@/components/testimonials";
 import Timeline from "@/components/timeline";
 import Footer from "@/components/footer";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const featuredProjects = await getFeaturedProjects();
+
   return (
     <main>
       <SiteNavbar />
@@ -31,12 +34,12 @@ export default function HomePage() {
         </div>
 
         <div className="mt-6 flex justify-center">
-          <a
+          <Link
             href="/projects"
             className="rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm text-white/80 hover:bg-white/10"
           >
             View all projects →
-          </a>
+          </Link>
         </div>
       </Section>
 
@@ -312,12 +315,12 @@ export default function HomePage() {
                   View GitHub
                 </a>
 
-                <a
+                <Link
                   href="/projects"
                   className="w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm text-white/80 hover:bg-white/10 sm:w-auto"
                 >
                   Browse Projects
-                </a>
+                </Link>
               </div>
 
               <div className="mt-6 space-y-2 text-sm text-white/65 wrap-break-word">

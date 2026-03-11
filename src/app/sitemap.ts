@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
-import { projects } from "@/data/projects";
+import { getProjects } from "@/data/projects";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const projects = await getProjects();
   const base = siteUrl.replace(/\/$/, "");
   const now = new Date();
 

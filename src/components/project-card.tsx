@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight, Github } from "lucide-react";
-import { Project } from "@/data/projects";
+import type { Project } from "@/data/projects";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";

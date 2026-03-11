@@ -1,5 +1,5 @@
 import SiteNavbar from "@/components/site-navbar";
-import { projects } from "@/data/projects";
+import { getProjectBySlug } from "@/data/projects";
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -15,7 +15,7 @@ export default async function ProjectDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const project = projects.find((p) => p.slug === slug);
+  const project = await getProjectBySlug(slug);
   if (!project) return notFound();
 
   return (
