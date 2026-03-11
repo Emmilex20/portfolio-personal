@@ -51,6 +51,7 @@ type ProjectCopy = {
   tagline: string;
   role: string;
   stack?: string[];
+  hideGithub?: boolean;
   highlights: string[];
   sections: Project["sections"];
 };
@@ -114,6 +115,7 @@ const PROJECT_COPY: Record<string, ProjectCopy> = {
       "A faith-centered product experience with a live deployment, structured content, and room for community features.",
     role: "Full-stack Engineer",
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
+    hideGithub: true,
     highlights: [
       "One of the most recently pushed repos in the account",
       "Live deployment already connected to the GitHub project",
@@ -147,6 +149,7 @@ const PROJECT_COPY: Record<string, ProjectCopy> = {
       "A graduation planning and progress-tracking product designed around milestones, deadlines, and clear academic visibility.",
     role: "Product Engineer",
     stack: ["HTML", "CSS", "JavaScript", "Vercel"],
+    hideGithub: true,
     highlights: [
       "Currently the largest public repo surfaced from the GitHub account",
       "Recent push activity makes it current, not archival",
@@ -626,7 +629,7 @@ function buildProjectFromRepo(
     highlights,
     links: {
       live: repo.homepage || undefined,
-      github: repo.html_url,
+      github: copy?.hideGithub ? undefined : repo.html_url,
     },
     sections,
     featured,
