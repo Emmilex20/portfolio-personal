@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+/*
+ * Tailwind v4 uses the user's OS preference for `dark:` utilities by default.
+ * The portfolio uses next-themes with a class-based toggle, so bind the dark
+ * variant to `.dark` explicitly. This prevents OS dark mode from leaking dark
+ * text/background utilities into the manually selected light theme.
+ */
+@custom-variant dark (&:where(.dark, .dark *));
+
 html {
   scroll-behavior: smooth;
   background: #f8fafc;
