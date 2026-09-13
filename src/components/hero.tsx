@@ -10,7 +10,7 @@ const fadeUp = {
   show: (i = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: 0.08 * i, duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+    transition: { delay: 0.08 * i, duration: 0.7, ease: "easeOut" as const },
   }),
 };
 
@@ -95,7 +95,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, scale: 0.96, y: 24 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
           className="relative"
         >
           <div className="absolute -inset-8 -z-10 rounded-full bg-gradient-to-br from-blue-500/10 via-violet-500/10 to-fuchsia-500/10 blur-3xl" />
