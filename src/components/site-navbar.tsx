@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { Menu, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import {
   Sheet,
   SheetContent,
@@ -25,15 +24,18 @@ const nav = [
 ];
 
 export default function SiteNavbar() {
-  const { setTheme, theme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+
   useEffect(() => setMounted(true), []);
 
+  const isDark = mounted ? resolvedTheme !== "light" : true;
+
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-background/50 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/75 backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/60">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         <Link href="/" className="group inline-flex items-center gap-2">
-          <span className="grid h-9 w-9 place-items-center overflow-hidden rounded-xl border border-white/10 bg-white/5 shadow-sm">
+          <span className="grid h-9 w-9 place-items-center overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-white/10 dark:bg-white/5">
             <Image
               src="/profile.png"
               alt="Emmanuel Agina"
@@ -43,8 +45,8 @@ export default function SiteNavbar() {
               priority
             />
           </span>
-          <span className="text-sm font-semibold tracking-tight">
-            Emmanuel <span className="text-white/60">Agina</span>
+          <span className="text-sm font-semibold tracking-tight text-slate-950 dark:text-white">
+            Emmanuel <span className="text-slate-500 dark:text-white/60">Agina</span>
           </span>
         </Link>
 
@@ -53,7 +55,7 @@ export default function SiteNavbar() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm text-white/70 transition hover:text-white"
+              className="text-sm text-slate-600 transition hover:text-slate-950 dark:text-white/70 dark:hover:text-white"
             >
               {item.label}
             </Link>
@@ -61,38 +63,38 @@ export default function SiteNavbar() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Button asChild className="hidden md:inline-flex">
+          <Button asChild className="hidden rounded-full md:inline-flex">
             <a href="/#contact">Let’s Collaborate</a>
           </Button>
 
           <Button
             variant="outline"
             size="icon"
-            className={cn("border-white/10 bg-white/5 hover:bg-white/10")}
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            aria-label="Toggle theme"
+            className="rounded-full border-slate-200 bg-white/80 text-slate-700 hover:bg-slate-100 hover:text-slate-950 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+            onClick={() => setTheme(isDark ? "light" : "dark")}
+            aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
+            title={isDark ? "Switch to light theme" : "Switch to dark theme"}
           >
-            {!mounted ? null : theme === "dark" ? (
-              <Sun className="h-4 w-4" />
+            {mounted ? (
+              isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />
             ) : (
-              <Moon className="h-4 w-4" />
+              <span className="h-4 w-4" />
             )}
           </Button>
 
-          {/* Mobile */}
           <div className="md:hidden">
             <Sheet>
               <SheetTrigger asChild>
                 <Button
                   variant="outline"
                   size="icon"
-                  className="border-white/10 bg-white/5 hover:bg-white/10"
+                  className="rounded-full border-slate-200 bg-white/80 text-slate-700 hover:bg-slate-100 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
                   aria-label="Open menu"
                 >
                   <Menu className="h-4 w-4" />
                 </Button>
               </SheetTrigger>
-              <SheetContent className="border-white/10 bg-background/80 backdrop-blur-xl">
+              <SheetContent className="border-slate-200 bg-white/95 text-slate-950 backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/95 dark:text-white">
                 <SheetHeader>
                   <SheetTitle className="text-left">Menu</SheetTitle>
                   <SheetDescription className="sr-only">
@@ -105,7 +107,7 @@ export default function SiteNavbar() {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/80 hover:bg-white/10"
+                      className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700 transition hover:bg-slate-100 dark:border-white/10 dark:bg-white/5 dark:text-white/80 dark:hover:bg-white/10"
                     >
                       {item.label}
                     </Link>
@@ -113,7 +115,7 @@ export default function SiteNavbar() {
 
                   <a
                     href="/#contact"
-                    className="mt-2 rounded-2xl bg-white text-black px-4 py-3 text-sm font-medium"
+                    className="mt-2 rounded-2xl bg-slate-950 px-4 py-3 text-sm font-medium text-white dark:bg-white dark:text-black"
                   >
                     Let’s Collaborate
                   </a>
