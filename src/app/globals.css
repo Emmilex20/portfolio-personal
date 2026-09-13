@@ -2,15 +2,61 @@
 
 html {
   scroll-behavior: smooth;
+  background: #05070b;
+}
+
+body {
+  overflow-x: hidden;
 }
 
 ::selection {
-  background: rgba(59, 130, 246, 0.35);
+  background: rgba(124, 92, 255, 0.36);
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #07090d;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 3px solid #07090d;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.26);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .glass-panel {
+    border: 1px solid rgb(255 255 255 / 0.1);
+    background: rgb(255 255 255 / 0.04);
+    box-shadow: 0 30px 80px rgb(0 0 0 / 0.24);
+    backdrop-filter: blur(20px);
   }
 
   .light {
@@ -43,6 +89,10 @@ html {
 
   .light .text-white\/50 {
     color: rgb(15 23 42 / 0.5) !important;
+  }
+
+  .light .text-white\/45 {
+    color: rgb(15 23 42 / 0.45) !important;
   }
 
   .light .text-white\/40 {
