@@ -100,12 +100,8 @@ export default function SiteNavbar() {
                 <SheetContent className="border-slate-200 bg-white/98 text-slate-950 shadow-2xl backdrop-blur-2xl dark:border-white/10 dark:bg-slate-950/98 dark:text-white">
                   <SheetHeader>
                     <div className="flex items-center justify-between gap-4 pr-8">
-                      <div>
-                        <SheetTitle className="text-left text-slate-950 dark:text-white">Menu</SheetTitle>
-                        <SheetDescription className="mt-1 text-left text-xs text-slate-500 dark:text-white/45">
-                          Navigate the portfolio or change appearance.
-                        </SheetDescription>
-                      </div>
+                      <SheetTitle className="text-left text-slate-950 dark:text-white">Menu</SheetTitle>
+                      <SheetDescription className="sr-only">Mobile portfolio navigation.</SheetDescription>
 
                       <Button
                         type="button"
@@ -167,7 +163,6 @@ export default function SiteNavbar() {
         </div>
       </header>
 
-      {/* Reserve the navbar height so fixed positioning never covers page content. */}
       <div aria-hidden="true" className="h-16" />
     </Fragment>
   );
